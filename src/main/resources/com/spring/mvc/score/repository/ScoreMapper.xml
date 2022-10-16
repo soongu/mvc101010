@@ -16,8 +16,15 @@
                 #{math}, #{total}, #{average}, #{grade})
     </insert>
 
+    <!--  sql과 java의 이름관례 차이에서 나오는 문제를 보정  -->
+    <resultMap id="scoreMap" type="com.spring.mvc.score.domain.Score">
+        <!--  column: db에서 작성한이름 // property: java에서 작성한 이름      -->
+        <result column="stu_num" property="stuNum" />
+        <result column="stu_name" property="name" />
+    </resultMap>
+
     <!-- 전체 점수 정보 조회   -->
-    <select id="findAll">
+    <select id="findAll" resultMap="scoreMap">
 
         SELECT
             stu_num, stu_name,
@@ -28,7 +35,7 @@
     </select>
 
     <!-- 개별 점수 조회-->
-    <select id="findOne">
+    <select id="findOne" resultMap="scoreMap">
         SELECT
             stu_num, stu_name,
             kor, eng, math,
