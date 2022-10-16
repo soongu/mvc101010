@@ -32,6 +32,11 @@
             total, average, grade
         FROM score
 
+        <if test="sort == 'num'">ORDER BY stu_num</if>
+        <if test="sort == 'name'">ORDER BY stu_name</if>
+        <if test="sort == 'average'">ORDER BY average DESC</if>
+
+
     </select>
 
     <!-- 개별 점수 조회-->
