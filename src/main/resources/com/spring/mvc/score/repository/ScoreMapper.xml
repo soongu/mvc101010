@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에 사용할 인터페이스 경로를 명시 -->
+<mapper namespace="com.spring.mvc.score.repository.ScoreMapper">
+
+    <!-- 점수 저장 기능 -->
+    <!-- id에는 추상메서드 이름 적기   -->
+    <insert id="save">
+        INSERT INTO score
+            (stu_name, kor, eng, math, total, average, grade)
+        VALUES
+            (#{name}, #{kor}, #{eng},
+                #{math}, #{total}, #{average}, #{grade})
+    </insert>
+
+    <!-- 전체 점수 정보 조회   -->
+    <select id="findAll">
+
+        SELECT
+            stu_num, stu_name,
+            kor, eng, math,
+            total, average, grade
+        FROM score
+
+    </select>
+
+    <!-- 개별 점수 조회-->
+    <select id="findOne">
+        SELECT
+            stu_num, stu_name,
+            kor, eng, math,
+            total, average, grade
+        FROM score
+        WHERE stu_num = #{stuNum}
+    </select>
+
+    <!-- 점수 정보 삭제-->
+    <delete id="remove">
+        DELETE FROM score
+        WHERE stu_num = #{stuNum}
+    </delete>
+
+</mapper>
