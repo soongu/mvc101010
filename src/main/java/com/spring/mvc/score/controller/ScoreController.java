@@ -3,6 +3,7 @@ package com.spring.mvc.score.controller;
 import com.spring.mvc.score.domain.Score;
 import com.spring.mvc.score.repository.ScoreMemoryRepo;
 import com.spring.mvc.score.repository.ScoreRepository;
+import com.spring.mvc.score.service.ScoreService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.util.List;
 public class ScoreController {
 
     private final ScoreRepository repository;
+    private final ScoreService service;
 
 
     // 점수 등록 및 조회 화면 열기 요청
@@ -29,6 +31,7 @@ public class ScoreController {
             , Model model) {
         log.info("/score/list GET 요청!! - param1 : {}", sort);
 
+        List<Score> scoreList = service.findAllService(sort);
 
         model.addAttribute("scores", scoreList);
 
